@@ -15,13 +15,20 @@ class App extends Component {
     }
   }
 
+  submit = () => {
+    // this.setState((prevState) => ({restaurants: [prevState.restaurants, input]}))
+    this.setState((prevState) => ({id: prevState.id + 1},{rating: 0}));
+  }
+
   render() {
   return (
     <div className="App">
       <Counter count={0} />
       <Instructions complete={true} />
+      <input />
+      <button onClick={this.submit}>submit</button>
       {this.state.restaurants.map(x => (
-        <Restaurant id={x.id} name={x.name} rating={x.rating} />
+        <Restaurant id={x.id} name={x.name} count={x.rating} />
       ))}
     </div>
   )

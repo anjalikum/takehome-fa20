@@ -13,7 +13,7 @@ class App extends Component {
   
   render() {
     return (
-      <p> {this.state.name} <br/> {this.state.count} </p>
+      <p> {this.state.name} {this.state.count} </p>
     )
   }
 }
