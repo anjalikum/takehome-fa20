@@ -61,6 +61,24 @@ def delete_restaurant(id):
     db.deleteById('restaurants', int(id))
     return create_response(message="Restaurant deleted")
 
+@app.route("/restaurants/<id>", methods=['GET'])
+def get_restaurant(id):
+  restaurant = db.getById('restaurants', int(id))
+  if restaurant is None:
+    return create_resopnse(status=404, message="No restaurant with this id exists")
+  return create_response(restaurant)
+
+@app.route("/restaurants", methods=['GET'])
+def get_all_restaurants():
+    restaurants = db.get('restaurants')
+    minRating = request.args.get('minRating')
+    filtered_restaurants = []
+    filtered = db.getByRating('restaurants', int(rating))
+    if db.getByRating('restaurants', int(rating)) >= minRating in restaurants:
+      filtered_restaurants.append(db.getByRating('restaurants', int(rating)) >= minRating)
+    if filtered_restaurants is None:
+      return create_resopnse(status=404, message="No restaurant with this minimum rating exists")
+    return create_response({"restaurants": filtered_restaurants})
 
 # TODO: Implement the rest of the API here!
 
